@@ -9,8 +9,9 @@ body.page1 {
     background-color: #F6F6F6;
     color: white;
     display: flex;
-    width: 1440px;
     height: 960px;
+    width: 1440px;
+    margin: 0 auto;
 }
 
 .coffe_column {
@@ -214,15 +215,16 @@ body.page2 {
     color: white;
     display: flex;
     flex-direction: column;
-    width: 1440px;
-    height: 960px;
+    min-width: 1440px;
+    min-height: 960px;
+    margin: 0 auto;
 
 }
 
 .navigation2 {
     display: flex;
     justify-content: space-between;
-    margin: 20px;
+    margin: 15px;
     padding: 20px;
     font-size: 20px;
 }
@@ -272,6 +274,7 @@ body.page2 {
 }
 
 .description {
+    width: 90%;
     color: black;
     font-size: 20px;
 
@@ -407,49 +410,103 @@ body.page2 {
     border:5px solid #a7260c;
 }
 
-/*Страница 3*/
-
-body.page3 {
-    background-color: white;
+.order-status-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
     width: 480px;
-    height: 960px;
-    padding: 20px;
-    color: black;
+    height: 100%;
+    background-color: white;
+    z-index: 1000;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: none;
 }
 
-.header {
+.order-status-panel.active {
+    transform: translateX(0);
+    display: flex; 
+}
+
+.panel-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.panel-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.page1, body.page2 {
+    position: relative;
+    overflow-x: hidden;
+}
+
+.order-status-panel .panel-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
+    padding: 20px;
     border-bottom: 1px solid #eaeaea;
 }
 
-.header h1 {
+.order-status-panel .panel-header h2 {
     font-size: 28px;
     color: black;
+    margin: 0;
 }
 
-.header a {
-    text-decoration: none;
+.order-status-panel .panel-close-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
     color: black;
-    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    margin: 0 30px ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.order-status {
+.order-status-panel .panel-close-btn:hover {
+    color: #AC8F64;
+}
+
+.order-status-panel .panel-content {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.order-status-panel .order-status {
     background-color: white;
     border-radius: 16px;
     padding: 24px;
     margin-bottom: 24px;
 }
 
-.status-section {
+.order-status-panel .status-section {
     margin-bottom: 28px;
 }
 
-.status-title {
-    font-size: 18px;
+.order-status-panel .status-title {
+    font-size: 20px;
     margin-bottom: 16px;
     color: black;
     display: flex;
@@ -458,39 +515,44 @@ body.page3 {
     padding-left: 24px;
 }
 
-.status-items {
+.order-status-panel .status-items {
     list-style: none;
     padding-left: 24px;
 }
 
-.status-item {
+.order-status-panel .status-item {
     padding: 10px 0;
     font-size: 16px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #f5f5f5;
+    justify-content: space-between;
+    color: black;
 }
 
-.price-calculator {
+.order-status-panel .price-calculator {
     background-color: white;
     border-radius: 16px;
     padding: 24px;
     margin-bottom: 24px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 
-.price-row {
+.order-status-panel .price-row {
     display: flex;
     justify-content: space-between;
     padding: 14px 0;
-    border-bottom: 1px solid #f0f0f0;
 }
 
-.price-value {
+.order-status-panel .price-label {
+    color: black;
     font-size: 16px;
 }
 
-.total-row {
+.order-status-panel .price-value {
+    font-size: 16px;
+    color: black;
+}
+
+.order-status-panel .total-row {
     font-size: 20px;
     font-weight: 700;
     color: #111;
@@ -498,15 +560,25 @@ body.page3 {
     padding-top: 18px;
 }
 
-.pay {
-    background-color: gray;
-    color: white;
-    border: none;
-    width: 100%;
-    padding: 20px;
-    border-radius: 14px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 20px;
+.order-status-panel .pay {
+    background-color: #CD4126CC !important;
+    color: white !important;
+    border: none !important;
+    width: 100% !important;
+    padding: 20px !important;
+    border-radius: 14px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    margin-top: 20px !important;
 }
+
+.order-status-panel .pay:hover {
+    background-color: #a7260c !important;
+}
+
+
+
+
+
+
