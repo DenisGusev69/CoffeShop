@@ -1,12 +1,43 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.price button').forEach(button => {
+
+    /*document.querySelectorAll('.price button').forEach(button => {
         button.onclick = function () {
             const card = this.closest('.item');
             localStorage.setItem('name', card.querySelector('.cards_item_text').textContent);
             localStorage.setItem('price', card.querySelector('.cards_item_price').textContent);
             window.location.href = 'page2.html';
         };
+    });*/
+    function goToPage2(card) {
+        localStorage.setItem('name', card.querySelector('.cards_item_text').textContent);
+        localStorage.setItem('price', card.querySelector('.cards_item_price').textContent);
+        window.location.href = 'page2.html';
+    }
+    /*
+        
+        document.querySelectorAll('.price button').forEach(button => {
+            button.onclick = function (e) {
+                e.stopPropagation(); 
+                const card = this.closest('.item');
+                goToPage2(card);
+            };
+        });
+    */
+
+    document.querySelectorAll('.item').forEach(card => {
+        card.onclick = function (e) {
+            goToPage2(card);
+        };
     });
+
+
+    document.querySelectorAll('a[href="page3.html"], .to-order').forEach(link => {
+        link.onclick = function (e) {
+            e.preventDefault();
+            showPage3Modal();
+        };
+    });
+
 
     const coffeeButtons = document.querySelectorAll('.coffee-type');
     coffeeButtons.forEach(button => {
@@ -42,6 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
         }
     }
+
+
     document.querySelector('.product_name').textContent = localStorage.getItem('name');
     document.querySelector('.total').textContent = localStorage.getItem('price');
 
@@ -67,4 +100,37 @@ document.addEventListener('DOMContentLoaded', function () {
             this.classList.add('active');
         });
     });
+
+    const quantityElement = document.querySelector('.quantity');
+    const minusBtn = document.querySelector('.quantity_btn.minus');
+    const plusBtn = document.querySelector('.quantity_btn.plus');
+
+    if (quantityElement && minusBtn && plusBtn) {
+        let quantity = 1;
+
+        minusBtn.onclick = function () {
+            if (quantity > 1) {
+                quantity--;
+                quantityElement.textContent = quantity;
+                updateTotalPrice();
+            }
+        };
+
+        plusBtn.onclick = function () {
+            quantity++;
+            quantityElement.textContent = quantity;
+            updateTotalPrice();
+        };
+
+        function updateTotalPrice() {
+            const basePrice = parseFloat(localStorage.getItem('price')?.replace('$', '') || 99.00);
+            const total = basePrice * quantity;
+            const formattedTotal = (`$ ${total.toFixed(2)}`).replace('.', ',');
+
+            localStorage.setItem('totalAmount', formattedTotal);
+
+            document.querySelector('.total').textContent = formattedTotal;
+        }
+    }
+
 });

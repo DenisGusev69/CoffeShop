@@ -51,7 +51,7 @@
             </svg>
         </div>
         <div class="coffe_info">
-            <div class="product_name">Cinnamon and Cocoa</div>
+            <div class="product_name"></div>
             <div class="description">A single espresso shot poured into hot foamy milk, with the surface topped with
                 mildly sweetened cocoa powder and drizzled with scrumptious caramel syrup.</div>
             <div class="option-section">
@@ -108,7 +108,7 @@
             </div>
             <div class="price_info">
                 <div class="price_display">
-                    <span class="total">$99.00</span>
+                    <span class="total"></span>
                 </div>
                 <div class="quantity_control">
                     <button class="quantity_btn minus">-</button>
@@ -120,7 +120,41 @@
 
         </div>
     </div>
-    </body2>
+
+    <div id="orderStatusPanel" class="order-status-panel" style="display: none;">
+        <div class="panel-header">
+            <h2>Order Status</h2>
+            <button class="panel-close-btn">Hide</button>
+        </div>
+        <div class="panel-content">
+            <div class="order-status">
+                <div class="status-section status-ordered">
+                    <div class="status-title">Ordered</div>
+                    <ul class="status-items">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="price-calculator">
+                <div class="price-row">
+                    <span class="price-label">Subtotal</span>
+                    <span class="price-value">$0.00</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">Discount -10%</span>
+                    <span class="price-value">$0.00</span>
+                </div>
+                <div class="price-row total-row">
+                    <span class="price-label">Total</span>
+                    <span class="price-value">$0.00</span>
+                </div>
+            </div>
+            <button class="pay">Pay</button>
+        </div>
+    </div>
+
     <script src="code.js"></script>
+</body class="page2">
+
 
 </html>

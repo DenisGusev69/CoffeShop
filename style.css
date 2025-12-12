@@ -140,6 +140,7 @@ body.page1 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+    cursor: pointer;
 }
 
 .item {
@@ -306,6 +307,9 @@ body.page2 {
     color: black;
     font-size: 15px;
 }
+.size_box:hover {
+    border: 2px solid #AC8F64;
+}
 
 .size_box.active {
     border: 2px solid black;
@@ -333,13 +337,16 @@ body.page2 {
     color: black;
     border: none;
     height: 40px;
+    border: 2px solid transparent;
     border-radius: 20px;
     padding: 10px 10px 10px 10px;
     font-size: 20px;
     display: flex;
     text-align: center;
 }
-
+.button_setup:hover {
+    border: 2px solid #AC8F64;
+}
 .button_setup.active {
     border: 2px solid black;
     background-color: #AC8F64;
@@ -380,6 +387,12 @@ body.page2 {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.quantity_btn.plus:hover {
+    font-size: 30px;
+}
+.quantity_btn.minus:hover {
+    font-size: 30px;
 }
 .place-order-btn{
     width: 272px;
