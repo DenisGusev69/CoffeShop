@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    
+
     if (!localStorage.getItem('cart')) {
         localStorage.setItem('cart', JSON.stringify([]));
     }
@@ -431,6 +431,25 @@ document.addEventListener('DOMContentLoaded', function () {
                             </svg>
                             `;
 
+        function filterCoffeeItems(type) {
+            const allItems = document.querySelectorAll('.item');
+
+            if (type === 'all' || !type) {
+                allItems.forEach(item => {
+                    item.style.display = 'flex';
+                });
+                return;
+            }
+
+            allItems.forEach(item => {
+                const itemType = item.dataset.coffeeType;
+                if (itemType === type) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
         function activateCoffeeType(index) {
             coffeeTypes.forEach((btn, i) => {
                 btn.classList.remove('active');
@@ -442,6 +461,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             coffeeTypes[index].classList.add('active');
             currentIndex = index;
+            const selectedType = coffeeTypes[index].dataset.type;
+
+
+            filterCoffeeItems(selectedType);
         }
 
         activateCoffeeType(0);
