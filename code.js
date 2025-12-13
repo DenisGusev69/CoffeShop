@@ -404,10 +404,14 @@ document.addEventListener('DOMContentLoaded', function () {
             searchInput.addEventListener('input', function () {
                 const searchTerm = this.value.toLowerCase().trim();
                 const items = document.querySelectorAll('.item');
-
+                const activeTypeBtn = document.querySelector('.coffee-type.active');
+                const activeType = activeTypeBtn ? activeTypeBtn.dataset.type : 'all';
                 items.forEach(item => {
                     const itemName = item.querySelector('.cards_item_text').textContent.toLowerCase();
-                    if (searchTerm === '' || itemName.includes(searchTerm)) {
+                    const itemType = item.dataset.coffeeType || '';
+                    const finalSearch = searchTerm === '' || itemName.includes(searchTerm);
+                    const finalType = activeType === 'all' || itemType === activeType;
+                    if (finalSearch && finalType) {
                         item.style.display = 'flex';
                     } else {
                         item.style.display = 'none';
