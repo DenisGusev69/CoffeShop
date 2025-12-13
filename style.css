@@ -576,9 +576,422 @@ body.page1, body.page2 {
 .order-status-panel .pay:hover {
     background-color: #a7260c !important;
 }
+.cart-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    background-color: #CD4126CC;
+    color: white;
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 8px;
+    padding: 0 6px;
+}
+
+body.page2 .cart-counter {
+    background-color: #CD4126CC;
+}
+
+.cart-counter:empty {
+    display: none;
+}
+
+.mobile-coffee-filter {
+    display: none;
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    border: 2px solid #DADADA;
+    border-radius: 25px;
+    background-color: white;
+    font-size: 16px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    
+}
+
+.mobile-coffee-filter:focus {
+    outline: none;
+    border-color: #AC8F64;
+}
 
 
+@media (max-width: 1200px) {
+    body.page1 {
+        width: 100%;
+        min-width: unset;
+        flex-direction: column;
+        padding: 20px;
+        height: auto;
+        margin: 0;
+        overflow-x: hidden;
+    }
+    
+    .coffe_column {
+        display: none !important;
+    }
+    
+    .mobile-coffee-filter {
+        display: block !important;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .menu {
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    
+    .navigation {
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 20px;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    .search_string {
+        position: relative !important;
+        width: 100% !important;
+        height: 60px !important;
+        margin-bottom: 10px;
+    }
+    
+    .search_string input {
+        width: 100% !important;
+        height: 60px !important;
+        padding: 15px 50px 15px 20px !important;
+        font-size: 16px !important;
+    }
+    
+    .search_string input::placeholder {
+        font-size: 16px !important;
+    }
+    
+    .search_string svg {
+        position: absolute !important;
+        left: auto !important;
+        right: 20px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .cards {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+        justify-items: center;
+    }
+    
+    .item {
+        width: 100% !important;
+        max-width: 300px !important;
+        height: auto !important;
+        min-height: 400px;
+        margin: 0 auto;
+    }
+    
+    .item img {
+        width: 100% !important;
+        height: 200px !important;
+        object-fit: cover;
+    }
+    
+    .cards_item_text {
+        font-size: 18px !important;
+        padding: 10px 15px 5px !important;
+    }
+    
+    .price {
+        width: 120px !important;
+        height: 45px !important;
+    }
+    
+    .cards_item_price {
+        font-size: 16px !important;
+        padding: 10px !important;
+    }
+    
+    .price button {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 24px !important;
+    }
+    
+    .to-order {
+        align-self: flex-end;
+        
+    }
+    body.page2 {
+        min-width: unset !important;
+        min-height: auto !important;
+        width: 100% !important;
+        padding: 15px;
+    }
+    
+    .navigation2 {
+        flex-direction: row;
+        align-items: stretch;
+        margin: 10px !important;
+        padding: 15px !important;
+        gap: 15px;
+    }
+    
+    .exit {
+        align-self: flex-start;
+    }
+    .exit svg{
+        width: 30px;
+        height: 15px;
+    }
+    .to-order {
+        align-self: flex-end;
+    
+    }
+    
+    .setup {
+        flex-direction: column !important;
+        align-items: center;
+        padding: 15px;
+    }
+    
+    .coffe_pict {
+        display: none;
+    }
+    
+    .coffe_pict svg {
+        width: 100%;
+        height: auto;
+    }
+    
+    .coffe_info {
+        width: 100%;
+        max-width: 600px;
+    }
+    
+    .product_name {
+        font-size: 40px !important;
+        text-align: center;
+    }
+    
+    .description {
+        width: 100% !important;
+        font-size: 16px !important;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .option-section {
+        margin-bottom: 25px;
+    }
+    
+    .section-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .size {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .size_box {
+        width: 90px !important;
+        height: 90px !important;
+        font-size: 14px !important;
+    }
+    
+    .extra, .milk_type {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .button_setup {
+        height: 35px !important;
+        font-size: 14px !important;
+        padding: 8px 15px !important;
+    }
+    
+    .price_info {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .price_display {
+        font-size: 40px !important;
+        text-align: center;
+    }
+    
+    .quantity_control {
+        width: 120px;
+        height: 45px;
+    }
+    
+    .quantity_btn {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+    
+    .quantity {
+        font-size: 18px;
+    }
+    
+    .place-order-btn {
+        width: 100% !important;
+        max-width: 300px;
+        height: 60px;
+        font-size: 18px;
+        margin: 20px auto;
+        display: block;
+    }
+    
+    .order-status-panel {
+        width: 100% !important;
+        max-width: 400px;
+    }
+    
+    .panel-content {
+        padding: 15px !important;
+    }
+    
+    .order-status-panel .status-item {
+        font-size: 14px;
+    }
+    
+    .order-status-panel .price-label,
+    .order-status-panel .price-value {
+        font-size: 14px;
+    }
 
+}
 
+@media (max-width: 768px) {
+    body.page1 {
+        padding: 15px;
+    }
+    
+
+    .cards {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    
+    .item {
+        max-width: 100% !important;
+        min-height: 380px;
+    }
+    
+    .search_string {
+        height: 50px !important;
+    }
+    
+    .search_string input {
+        height: 50px !important;
+        font-size: 14px !important;
+        padding: 12px 45px 12px 15px !important;
+    }
+    
+    .search_string svg {
+        right: 15px !important;
+        width: 20px;
+        height: 20px;
+    }
+    
+    .mobile-coffee-filter {
+        height: 45px;
+        font-size: 14px;
+    }
+    
+    .to-order {
+        font-size: 16px !important;
+    }
+    
+    .cart-counter {
+        min-width: 26px;
+        height: 26px;
+        font-size: 13px;
+    }
+    body.page2 {
+        padding: 10px;
+    }
+    
+    .navigation2 {
+        padding: 10px !important;
+        margin: 5px !important;
+    }
+    .coffe_pict {
+        display: none;
+    }
+    .product_name {
+        font-size: 32px !important;
+    }
+    
+    .description {
+        font-size: 14px !important;
+    }
+    
+    .size {
+        gap: 10px;
+    }
+    
+    .size_box {
+        width: 70px !important;
+        height: 70px !important;
+        font-size: 12px !important;
+        padding: 10px 0 !important;
+    }
+    
+    .button_setup {
+        height: 32px !important;
+        font-size: 12px !important;
+        padding: 6px 12px !important;
+    }
+    
+    .price_display {
+        font-size: 32px !important;
+    }
+    
+    .quantity_control {
+        width: 100px;
+        height: 40px;
+    }
+    
+    .quantity_btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .place-order-btn {
+        height: 55px;
+        font-size: 16px;
+    }
+    
+
+    .exit-link {
+        font-size: 16px;
+    }
+    
+    .to-order-link {
+        font-size: 16px;
+    }
+    
+    .cart-counter {
+        min-width: 26px;
+        height: 26px;
+        font-size: 13px;
+    }
+
+}
 
 

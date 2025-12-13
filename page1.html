@@ -53,6 +53,14 @@
     </div>
     <div class="menu">
         <div class="navigation">
+            <select class="mobile-coffee-filter" id="mobileCoffeeFilter">
+                <option value="all">All Types</option>
+                <option value="cappuccino">Cappuccino</option>
+                <option value="latte">Latte</option>
+                <option value="americano">Americano</option>
+                <option value="espresso">Espresso</option>
+                <option value="flatwhite">Flat White</option>
+            </select>
             <div class="search_string">
                 <input type="text" name="search" id="search" required placeholder="Browse your favourite coffee here..">
                 <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,6 +72,7 @@
 
             <a href="page3.html" class="to-order">
                 <span class="to-order-link">ORDER STATUS</span>
+                <span class="cart-counter" id="cartCounter">0</span>
             </a>
 
         </div>

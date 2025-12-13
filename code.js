@@ -282,7 +282,21 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!localStorage.getItem('cart')) {
         localStorage.setItem('cart', JSON.stringify([]));
     }
+    function updateCartCounter() {
+        const cartCounter = document.getElementById('cartCounter');
+        if (!cartCounter) return;
 
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+        cartCounter.textContent = totalItems;
+
+        if (totalItems > 0) {
+            cartCounter.style.display = 'flex';
+        } else {
+            cartCounter.style.display = 'none';
+        }
+    }
     function updateCart(itemName, itemPrice, quantity = 1, options = {}) {
         const cart = JSON.parse(localStorage.getItem('cart'));
         const itemId = `${itemName}_${JSON.stringify(options)}`;
@@ -305,6 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         localStorage.setItem('cart', JSON.stringify(cart));
         updateOrderStatusPanel();
+        updateCartCounter();
         return cart;
     }
 
@@ -374,12 +389,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (panel) {
             const closeBtn = panel.querySelector('.panel-close-btn');
             if (closeBtn) closeBtn.onclick = hideOrderStatusPanel;
-
+            updateCartCounter();
             const payBtn = panel.querySelector('.pay');
             if (payBtn) {
                 payBtn.onclick = function () {
                     localStorage.setItem('cart', JSON.stringify([]));
                     updateOrderStatusPanel();
+                    updateCartCounter();
                     hideOrderStatusPanel();
                 };
             }
@@ -498,6 +514,40 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         }
+        function setupMobileFilter() {
+            const mobileFilter = document.getElementById('mobileCoffeeFilter');
+
+            if (!mobileFilter) return;
+
+            const activeTypeBtn = document.querySelector('.coffee-type.active');
+            if (activeTypeBtn) {
+                const activeType = activeTypeBtn.dataset.type;
+                mobileFilter.value = activeType;
+            }
+
+            mobileFilter.addEventListener('change', function () {
+                const selectedType = this.value;
+                filterCoffeeItems(selectedType);
+                const coffeeTypes = document.querySelectorAll('.coffee-type');
+                coffeeTypes.forEach(btn => {
+                    if (btn.dataset.type === selectedType) {
+                        btn.classList.add('active');
+                        const icon = btn.querySelector('.coffee-icon');
+                        if (icon) {
+                            icon.innerHTML = activeSVG;
+                        }
+                    } else {
+                        btn.classList.remove('active');
+                        const icon = btn.querySelector('.coffee-icon');
+                        if (icon) {
+                            icon.innerHTML = '';
+                        }
+                    }
+                });
+            });
+        }
+        setupMobileFilter();
+
     }
 
     function setupMainPage() {
@@ -627,10 +677,37 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
-
+    updateCartCounter();
     setupOrderStatusPanel();
     setupSearch();
+
     setupCoffeeTypes();
     setupMainPage();
     setupPage2();
+
+    window.addEventListener('resize', function () {
+        const coffeeColumn = document.querySelector('.coffe_column');
+
+        if (!coffeeColumn) return;
+
+        if (window.innerWidth > 1200) {
+            coffeeColumn.style.display = 'flex';
+        } else {
+            coffeeColumn.style.display = 'none';
+
+            const mobileFilter = document.getElementById('mobileCoffeeFilter');
+            const activeDesktopBtn = document.querySelector('.coffee-type.active');
+            if (mobileFilter && activeDesktopBtn) {
+                mobileFilter.value = activeDesktopBtn.dataset.type;
+            }
+        }
+    });
+
+    if (window.innerWidth <= 1200) {
+        const coffeeColumn = document.querySelector('.coffe_column');
+        if (coffeeColumn) {
+            coffeeColumn.style.display = 'none';
+        }
+    }
+
 });
