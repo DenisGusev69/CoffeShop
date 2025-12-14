@@ -685,29 +685,5 @@ document.addEventListener('DOMContentLoaded', function () {
     setupMainPage();
     setupPage2();
 
-    window.addEventListener('resize', function () {
-        const coffeeColumn = document.querySelector('.coffe_column');
-
-        if (!coffeeColumn) return;
-
-        if (window.innerWidth > 1200) {
-            coffeeColumn.style.display = 'flex';
-        } else {
-            coffeeColumn.style.display = 'none';
-
-            const mobileFilter = document.getElementById('mobileCoffeeFilter');
-            const activeDesktopBtn = document.querySelector('.coffee-type.active');
-            if (mobileFilter && activeDesktopBtn) {
-                mobileFilter.value = activeDesktopBtn.dataset.type;
-            }
-        }
-    });
-
-    if (window.innerWidth <= 1200) {
-        const coffeeColumn = document.querySelector('.coffe_column');
-        if (coffeeColumn) {
-            coffeeColumn.style.display = 'none';
-        }
-    }
 
 });

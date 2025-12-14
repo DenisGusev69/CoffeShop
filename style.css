@@ -176,7 +176,7 @@ body.page1 {
 }
 
 .price {
-    width: 140px;
+    width: 130px;
     height: 50px;
     background-color: #DADADA;
     border-radius: 10px;
@@ -339,10 +339,10 @@ body.page2 {
     background-color: white;
     color: black;
     border: none;
-    height: 40px;
+    /*height: 40px;*/
     border: 2px solid transparent;
     border-radius: 20px;
-    padding: 10px 10px 10px 10px;
+    padding: 5px 15px;
     font-size: 20px;
     display: flex;
     text-align: center;
@@ -381,7 +381,7 @@ body.page2 {
 
 .quantity_btn {
     width: 40px;
-    height: 40px;
+    /*height: 40px;*/
     background-color: white;
     color: #AC8F64;
     border: none;
@@ -390,6 +390,7 @@ body.page2 {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 .quantity_btn.plus:hover {
     font-size: 30px;
